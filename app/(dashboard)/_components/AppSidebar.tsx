@@ -1,11 +1,12 @@
-
+"use client"
 import { Button } from '@/components/ui/button'
-import { Sidebar, SidebarContent, SidebarGroup, SidebarHeader, SidebarTrigger } from '@/components/ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarTrigger } from '@/components/ui/sidebar'
 import {  PlusIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import JobSidebarList from './JobSidebarList'
 import SignInPrompt from './SignInPrompt'
+import SidebarFooterContent from './SidebarFooterContent'
 
 const AppSidebar = () => {
     return (
@@ -38,6 +39,21 @@ const AppSidebar = () => {
 
                     <SignInPrompt/>
                 </SidebarContent>
+                <SidebarFooter>
+                    <SidebarFooterContent
+                        isSignedIn={true}
+                        isLoaded={true}
+                        userName={"techguy"}
+                        emailAddress={"techguy@gmail.com"}
+                        userInitial={"T"}
+                        credits={10}
+                        loadingCredit={false}
+                        onUpgradeClick={() => console.log("")}
+                        onSignOutClicK={() => console.log("")}
+                    
+                        
+                    />
+                </SidebarFooter>
             </Sidebar>
         </>
     )
