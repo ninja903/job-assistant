@@ -1,5 +1,6 @@
 import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "./_components/AppSidebar";
+import SignInModal from "@/components/SigninModal";
 
 export default async function DashboardLayout({
     children,
@@ -22,6 +23,8 @@ export default async function DashboardLayout({
                     {children}
                 </main>
             </SidebarProvider>
+
+            <SignInModal />
         </>
     )
 };

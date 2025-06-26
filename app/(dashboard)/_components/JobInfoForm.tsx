@@ -8,7 +8,7 @@ import React, { useRef, useState } from "react";
 
 const JobInfoForm = () => {
   const { isSignedIn, user } = useUser();
- // const { openSignIn } = useSignIn();
+  const { openSignIn } = useSignIn();
   const [jobDescription, setJobDescription] = useState("");
   const textareaRef = useRef<AutosizeTextAreaRef>(null);
 

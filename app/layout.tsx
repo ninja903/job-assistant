@@ -1,13 +1,13 @@
 
-
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Onest } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
+import { ConvexClientProvider } from "@/context/ConvexClientProvider";
 
 const onest = Onest({ subsets: ["latin"], variable: "--font-onest" });
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 export const metadata: Metadata = {
   title: "AI Assistant",
@@ -21,11 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={`${onest.variable} ${geistSans.variable} ${geistMono.variable} bg-white`}>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <body className={`${onest.variable}`}>
+          <ConvexClientProvider>
+            <NuqsAdapter>{children}</NuqsAdapter>
+            <Toaster />
+          </ConvexClientProvider>
+        </body>
+      </html>
     </ClerkProvider>
+    
   );
-}
+};

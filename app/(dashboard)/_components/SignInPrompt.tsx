@@ -3,32 +3,25 @@ import React from "react";
 import { SidebarGroup } from "@/components/ui/sidebar";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-//import { useSignInModal } from "@/hooks/use-signin-modal";
+import { useSignInModal } from "@/hooks/use-signin-modal";
 
 const SignInPrompt = () => {
-    //const { open } = useSignInModal();
+    const { open } = useSignInModal();
 
     return (
         <SidebarGroup>
-            <div
-                className="w-full h-[0vh] flex flex-col
-      items-center justify-center shrink-0
-      "
-            >
+            <div className="w-full h-[50vh] flex flex-col items-center justify-center shrink-0">
                 <Image
                     src="/signin-prompt.svg"
-                    alt=""
+                    alt="Sign in"
                     width={212}
                     height={102}
                     className="max-w-[90%]"
                 />
-                <span
-                    className="text-[rgba(255,255,255,.5)] 
-        max-w-[180px] -m-2 text-sm font-medium mx-auto text-center"
-                >
+                <span className="text-[rgba(255,255,255,.5)] max-w-[180px] -m-2 text-sm font-medium mx-auto text-center">
                     Sign in for free to save your job history
                 </span>
-                <Button className="mt-6">
+                <Button onClick={open} className="mt-6">
                     Sign in
                 </Button>
             </div>

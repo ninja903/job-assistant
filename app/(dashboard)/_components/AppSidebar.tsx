@@ -7,8 +7,13 @@ import React from 'react'
 import JobSidebarList from './JobSidebarList'
 import SignInPrompt from './SignInPrompt'
 import SidebarFooterContent from './SidebarFooterContent'
+import { useAuth, useUser } from '@clerk/nextjs'
 
 const AppSidebar = () => {
+    const { isSignedIn, user, isLoaded } = useUser();
+    const { signOut } = useAuth();
+
+    const userId = user?.id || null;
     return (
         <>
             <Sidebar className="!bg-[rgb(33,33,33)] px-2">
@@ -20,8 +25,8 @@ const AppSidebar = () => {
                     </Link>
                     <SidebarTrigger className='!text-white !p-0 !bg-gray-800' />
                 </SidebarHeader>
-                <SidebarContent className='overflow-hidden'
-                >
+                <SidebarContent className='flex flex-col gap-4 overflow-auto h-full'>
+                
                     
                     <Link href="/">
                         <Button
@@ -35,23 +40,26 @@ const AppSidebar = () => {
                             <span>New job</span>
                         </Button>
                     </Link>
-                    <JobSidebarList />
+                    {userId && <JobSidebarList />}
 
-                    <SignInPrompt/>
+                    {!isSignedIn && isLoaded ? <SignInPrompt /> : null}
+                    
                 </SidebarContent>
                 <SidebarFooter>
                     <SidebarFooterContent
-                        isSignedIn={true}
-                        isLoaded={true}
-                        userName={"techguy"}
-                        emailAddress={"techguy@gmail.com"}
-                        userInitial={"T"}
+                        isSignedIn={isSignedIn || false}
+                        isLoaded={isLoaded}
+                        userName={user?.fullName!}
+                        emailAddress={user?.primaryEmailAddress?.emailAddress!}
+                        userInitial={user?.firstName?.charAt(0) || ""}
                         credits={10}
                         loadingCredit={false}
                         onUpgradeClick={() => console.log("")}
-                        onSignOutClicK={() => console.log("")}
-                    
-                        
+                        onSignOut={() =>
+                            signOut({
+                                redirectUrl: "/",
+                            })
+                        }
                     />
                 </SidebarFooter>
             </Sidebar>
