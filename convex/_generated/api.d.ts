@@ -13,6 +13,8 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as action from "../action.js";
+import type * as apiLimit from "../apiLimit.js";
 import type * as job from "../job.js";
 
 /**
@@ -24,6 +26,8 @@ import type * as job from "../job.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  action: typeof action;
+  apiLimit: typeof apiLimit;
   job: typeof job;
 }>;
 export declare const api: FilterApi<
