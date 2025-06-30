@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
+import JobResizablePanel from "../_components/JobResizablePanel";
 
-const page = () => {
+async function Page({ params }: any) {
+  const { jobId } = await params;
   return (
-    <div>
-          page
-          
+    <div
+      className="flex-1 bg-white justify-between flex
+    flex-col h-screen overflow-hidden
+    "
+    >
+      <div className="mx-auto w-full max-w-8xl grow lg:flex">
+        <JobResizablePanel jobId={jobId} />
+      </div>
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;
