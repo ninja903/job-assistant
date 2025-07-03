@@ -136,7 +136,7 @@ export const capturePayPalOrder = action({
       });
 
       //add new credit
-      await ctx.runMutation(api.apiLimit.addCredits, {
+      await ctx.runMutation(api.apiLimits.addCredits, {
         userId,
         credits: parseInt(credits),
       });

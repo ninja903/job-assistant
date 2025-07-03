@@ -20,7 +20,7 @@ export const getUserCredits = query({
       }
 
       return {
-        credits: apiLimits?.credits,
+        credits: apiLimits.credits !== undefined ? apiLimits.credits : 0,
       };
     } catch (error) {
       return {

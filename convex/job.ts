@@ -50,7 +50,7 @@ export const createJob = mutation({
     });
 
     // Deduct credit after successful job creation
-    await ctx.runMutation(api.apiLimit.deductCredit, {
+    await ctx.runMutation(api.apiLimits.deductCredit, {
       userId: args.userId,
       credit: CREDIT_COST.JOB_CREATION,
     });

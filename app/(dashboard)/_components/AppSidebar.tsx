@@ -26,9 +26,10 @@ const AppSidebar = () => {
   const { openModal } = useUpgradeModal();
   const userId = user?.id || null;
 
-  const apiLimits = useQuery(api.apiLimit.getUserCredits, {
+  const apiLimits = useQuery(api.apiLimits.getUserCredits, {
     userId: user?.id || "",
   });
+  
 
   const loadingCredit = apiLimits === undefined;
   const credits = apiLimits?.credits !== undefined ? apiLimits?.credits : 0;
